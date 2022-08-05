@@ -1,0 +1,307 @@
+
+
+{% extends 'base.html' %}
+
+{% block head %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
+<script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+{% endblock %}
+
+
+{% block body %}
+
+<header class="page-header">
+  <nav>
+    <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
+      <svg width="20" height="20" aria-hidden="true">
+        <use xlink:href="#down"></use>
+      </svg>
+    </button>
+    <ul class="admin-menu">
+      <li class="menu-heading">
+        <h3>User</h3>
+      </li>
+      
+      <li>
+        <a href="#0">
+          <svg>
+            <use xlink:href="#dashboard"></use>
+          </svg>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+          <a href="#0">
+            <svg>
+              <use xlink:href="#users"></use>
+            </svg>
+            <span>My info</span>
+          </a>
+      </li>
+      
+      <li>
+        <a href="#0">
+          <svg>
+            <use xlink:href="#notifications"></use>
+          </svg>
+          <span>Notifications</span>
+        </a>
+      </li>
+      <li class="menu-heading">
+        <h3>Settings</h3>
+      </li>
+      <li>
+        <a href="#0">
+          <svg>
+            <use xlink:href="#settings"></use>
+          </svg>
+          <span>Preferences</span>
+        </a>
+      </li>
+      <li>
+        <a href="/logout">
+          <svg>
+              <use xlink:href="#logout"></use>
+          </svg>
+          <span>Logout</span>
+        </a>
+      </li>
+      <li>
+        <div class="switch">
+          <input type="checkbox" id="mode" checked>
+          <label for="mode">
+            <span></span>
+          </label>
+        </div>
+        <button class="collapse-btn" aria-expanded="true" aria-label="collapse menu">
+          <svg aria-hidden="true">
+            <use xlink:href="#collapse"></use>
+          </svg>
+          <span>Collapse</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+    const html = document.documentElement;
+    const body = document.body;
+    const menuLinks = document.querySelectorAll(".admin-menu a");
+    const collapseBtn = document.querySelector(".admin-menu .collapse-btn");
+    const toggleMobileMenu = document.querySelector(".toggle-mob-menu");
+    const switchInput = document.querySelector(".switch input");
+    const switchLabel = document.querySelector(".switch label");
+    const switchLabelText = switchLabel.querySelector("span:last-child");
+    const collapsedClass = "collapsed";
+    const lightModeClass = "light-mode";
+
+    /*TOGGLE HEADER STATE*/
+    collapseBtn.addEventListener("click", function () {
+    body.classList.toggle(collapsedClass);
+    this.getAttribute("aria-expanded") == "true"
+        ? this.setAttribute("aria-expanded", "false")
+        : this.setAttribute("aria-expanded", "true");
+    this.getAttribute("aria-label") == "collapse menu"
+        ? this.setAttribute("aria-label", "expand menu")
+        : this.setAttribute("aria-label", "collapse menu");
+    });
+
+    /*TOGGLE MOBILE MENU*/
+    toggleMobileMenu.addEventListener("click", function () {
+    body.classList.toggle("mob-menu-opened");
+    this.getAttribute("aria-expanded") == "true"
+        ? this.setAttribute("aria-expanded", "false")
+        : this.setAttribute("aria-expanded", "true");
+    this.getAttribute("aria-label") == "open menu"
+        ? this.setAttribute("aria-label", "close menu")
+        : this.setAttribute("aria-label", "open menu");
+    });
+
+    /*SHOW TOOLTIP ON MENU LINK HOVER*/
+    for (const link of menuLinks) {
+    link.addEventListener("mouseenter", function () {
+        if (
+        body.classList.contains(collapsedClass) &&
+        window.matchMedia("(min-width: 768px)").matches
+        ) {
+        const tooltip = this.querySelector("span").textContent;
+        this.setAttribute("title", tooltip);
+        } else {
+        this.removeAttribute("title");
+        }
+    });
+    }
+
+    
+</script>
+
+<section class="page-content">
+	<section class="search-and-user">
+		<form>
+		<input type="search" placeholder="Search anything...">
+		<button type="submit" aria-label="submit form">
+			<svg aria-hidden="true">
+			<use xlink:href="#search"></use>
+			</svg>
+		</button>
+		</form>
+		<div class="admin-profile">
+		<span class="greeting">Welcome {{username}}</span>
+		</div>
+	</section>
+	<section class="grid">
+        {% if not checkedIn %}
+        <article>
+            <div class = "container" id="scannerBlock">
+                <p>You can scan the QR code of the establishment</p>
+                <br>
+                <button class = "button1" id="scannerBlockButton">Scan</button>
+                <div class = "camera">
+                    <video id = "preview"></video>
+                    <br>
+                    <input type="hidden" name="text" id="text" readonly="" placeholder="scan qrcode">
+                </div>
+            </div>
+            <div class = "container" id="confirmationBlock" style="display: none;">
+                <p id="placeName"></p>
+                <br>
+                <button class = "button1" style="color: red;" id="confirmationCancel">Cancel</button>
+                <!-- <button class = "button1" id="confirmationConfirm">Confirm</button> -->
+                <form action="/Visitor" method="POST" onsubmit="checkIn();" style="display: inline;">
+                    <input type="submit" class="button1" value="Confirm">
+                </form>
+            </div>            
+        </article>
+        {% endif %}
+        {% if checkedIn == true %}
+        <article>
+            
+            <form action="/Visitor" method="POST" onsubmit="checkOut();">
+                <input type="submit" class="button1" value="Checkout">
+            </form>
+            <div>checked in: <p id="checkedInPlaceName"></p></div>
+        </article>
+        {% endif %}
+        <article>
+            Your infection status:
+            <br>
+            {{ covidStatus }}
+        </article>
+
+
+	</section>
+	<footer class="page-footer">
+		<span>Corona archive</span>
+	</footer>
+</section>
+
+<script>
+    var xhttp = new XMLHttpRequest();
+    var placeID;
+    var scanner = new Instascan.Scanner({ video: document.getElementById('preview')});
+    $(document).ready(function(){
+        getCheckedInPlaceName();
+        $('#scannerBlockButton').click(function(){
+            if ($(this).text() == "Scan"){
+                $(this).text("Cancel");
+                $(this).parent().find(".camera").fadeToggle();
+                scan();
+            }
+            else{
+                $(this).text("Scan");
+                $(this).parent().find(".camera").fadeToggle();
+                scanner.stop();
+            }
+            
+        });
+
+        $('#confirmationCancel').click(function() {
+            $(this).parent().find(".camera").fadeToggle();
+            scan();
+            changeWindow('scanner');
+        });
+    });
+
+    function getCheckedInPlaceName() {
+        resp = xhttp.open("GET", "/checkedInPlaceInfo", true);
+        xhttp.onload = function() {
+            const obj = JSON.parse(this.responseText);
+            if(obj !== null) {
+                document.getElementById("checkedInPlaceName").innerHTML = obj[3];
+            }
+        }
+        xhttp.send();
+    }
+
+    function checkIn() {
+        var req = $.ajax({
+            url: '/visit/'+placeID,
+            async: false,
+            success: function(data) {
+                console.log(data);
+            }
+        });
+    }
+
+    function checkOut() {
+        var req = $.ajax({
+            url: '/checkout',
+            async: false,
+            success: function(data) {
+                console.log(data);
+            }
+        });
+    }
+
+    function scan(){
+        Instascan.Camera.getCameras().then(function(cameras){
+            if(cameras.length > 0 ){
+                scanner.start(cameras[0]);
+            } else{
+                alert('No cameras found');
+            }
+
+        }).catch(function(e) {
+            console.error(e);
+        });
+
+        scanner.addListener('scan',function(c){
+            if (new RegExp('/visit/[1-9]*$').test(c)) {
+                    id = c.match(/.*\/(.*)$/)[1];
+                    resp = xhttp.open("GET", "/getPlaceInfo/"+id, true);
+                    xhttp.onload = function() {
+                        const obj = JSON.parse(this.responseText);
+                        if(obj !== null) {
+                            document.getElementById("placeName").innerHTML = obj[1];
+                            scanner.stop();
+                            placeID = id;
+                            changeWindow('confirmation');
+                            /* console.log(obj[1]); */
+                        } else {
+                            alert('This Place Doesn\'t Exist');
+                            /* console.log('Invalid QR code'); */
+                        }
+                    }
+                    xhttp.send();
+                } else {
+                    alert('Invalid QR code');
+                }
+        });
+    }
+
+    function changeWindow(blockName) {
+        if (blockName == 'scanner') {
+            document.getElementById('scannerBlock').style.display = 'block';
+            document.getElementById('confirmationBlock').style.display = 'none';
+        } else if (blockName == 'confirmation') {
+            document.getElementById('scannerBlock').style.display = 'none';
+            document.getElementById('confirmationBlock').style.display = 'block';
+        }
+    }
+    
+
+</script>
+	
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="{{url_for('static', filename='Registerv.css')}}">
+</head>
+<body>
+
+<form action="/pregister" METHOD="POST">
+	<div class="container">
+		<a href = "/"> Back to Index page</a>
+		<h1>Register your place</h1>
+		<p>Please fill in this form to create an account.</p>
+		<hr>
+
+		<label for="place_name"><b>Place Name</b></label> 
+		<input type="text" placeholder="Name of your place" name="place_name"  required>
+
+		<label for="number"><b>Phone Number</b></label>
+		<input type="text" placeholder="Enter your phone number" name="number" id="number" required> 
+
+		<label for="email"><b>Email</b></label>
+		<input type="text" placeholder="Enter Email" name="email" id="email" required> 
+
+		<label for="password"><b>Password</b></label>
+		<input type="password" placeholder="Create a password" name="password" id="password" required> 
+
+		<label for="address"><b>Address</b></label>
+		<input type="text" placeholder="Enter address" name="address" id="address" required> 
+
+
+		<hr>
+		<label><b>Already have an account? <a href = "/Place">Login</a></b></label>
+		<button type="submit" class="registerbtn">Register</button>
+	</div>
+  
+</form> 
+</body>
+</html>

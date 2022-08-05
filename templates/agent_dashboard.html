@@ -1,0 +1,322 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+    .page-content .grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 30px;
+
+    }
+    .page-content .grid > article {
+        display: flex;
+        height: 400px;
+        background: var(--page-content-blockColor);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        align-items:initial;
+        justify-content: center;
+        text-align: center;
+    }
+    .form-submit-button {
+        background: #0066A2;
+        color: white;
+        border-style: outset;
+        border-color: #0066A2;
+        height: 30px;
+        width: 70px;
+        font: bold15px arial,sans-serif;
+        text-shadow: none;
+    }
+</style>
+
+<style>
+    * {box-sizing: border-box;}
+    
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    .topnav {
+      overflow: hidden;
+      background-color: #e9e9e9;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    
+    .topnav a {
+      float: left;
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+      
+    }
+    
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    .topnav a.active {
+      background-color: #2196F3;
+      color: white;
+    }
+    
+    .topnav input[type=text] {
+      float: left;
+      padding: 6px;
+      margin-top: 8px;
+      margin-right: 16px;
+      border: none;
+      font-size: 17px;
+    }
+    
+    @media screen and (max-width: 600px) {
+      .topnav a, .topnav input[type=text] {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+      }
+      
+      .topnav input[type=text] {
+        border: 1px solid #ccc;  
+      }
+    }
+    table, th, td {
+        width:110px;
+        text-align:center;
+        border:1px solid black;
+        padding:5px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    table {
+        width: 100%;
+    }
+</style>
+
+{% endblock %}
+
+
+{% block body %}
+
+<header class="page-header">
+  <nav>
+    <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
+      <svg width="20" height="20" aria-hidden="true">
+        <use xlink:href="#down"></use>
+      </svg>
+    </button>
+    <ul class="admin-menu">
+      <li class="menu-heading">
+        <h3>User</h3>
+      </li>
+      
+      <li>
+        <a href="/agent_dashboard">
+          <svg>
+            <use xlink:href="#dashboard"></use>
+          </svg>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+          <a href="#0">
+            <svg>
+              <use xlink:href="#users"></use>
+            </svg>
+            <span>My info</span>
+          </a>
+        </li>
+      <li>
+        <a href="#0">
+          <svg>
+            <use xlink:href="#trends"></use>
+          </svg>
+          <span>Analysis</span>
+        </a>
+      </li>
+      <li>
+        <a href="/hospital_request">
+          <svg>
+            <use xlink:href="#notifications"></use>
+          </svg>
+          <span>Notifications</span>
+        </a>
+      </li>
+      <li class="menu-heading">
+        <h3>Settings</h3>
+      </li>
+      <li>
+        <a href="#0">
+          <svg>
+            <use xlink:href="#settings"></use>
+          </svg>
+          <span>Preferences</span>
+        </a>
+      </li>
+      <li>
+        <a href="/contact-tracing">
+          <svg>
+              <use xlink:href="#people"></use>
+          </svg>
+          <span>Contact Tracing</span>
+        </a>
+      </li>
+      <li>
+        <a href="/allusers">
+          <svg>
+            <use xlink:href="#people"></use>
+          </svg>
+          <span>List of all users</span>
+        </a>
+      </li>
+      <li>
+        <a href="/allplaces">
+          <svg>
+            <use xlink:href="#people"></use>
+          </svg>
+          <span>List of all Places</span>
+        </a>
+      </li>
+      <li>
+        <a href="/allhospitals">
+          <svg>
+            <use xlink:href="#people"></use>
+          </svg>
+          <span>List of all hospitals</span>
+        </a>
+      </li>
+      <li>
+      <li>
+        <a href="/logout">
+          <svg>
+              <use xlink:href="#logout"></use>
+          </svg>
+          <span>Logout</span>
+        </a>
+      </li>
+      <li>
+        <div class="switch">
+          <input type="checkbox" id="mode" checked>
+          <label for="mode">
+            <span></span>
+          </label>
+        </div>
+        <button class="collapse-btn" aria-expanded="true" aria-label="collapse menu">
+          <svg aria-hidden="true">
+            <use xlink:href="#collapse"></use>
+          </svg>
+          <span>Collapse</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+
+
+
+
+<script>
+    const html = document.documentElement;
+    const body = document.body;
+    const menuLinks = document.querySelectorAll(".admin-menu a");
+    const collapseBtn = document.querySelector(".admin-menu .collapse-btn");
+    const toggleMobileMenu = document.querySelector(".toggle-mob-menu");
+    const switchInput = document.querySelector(".switch input");
+    const switchLabel = document.querySelector(".switch label");
+    const switchLabelText = switchLabel.querySelector("span:last-child");
+    const collapsedClass = "collapsed";
+    const lightModeClass = "light-mode";
+
+    /*TOGGLE HEADER STATE*/
+    collapseBtn.addEventListener("click", function () {
+    body.classList.toggle(collapsedClass);
+    this.getAttribute("aria-expanded") == "true"
+        ? this.setAttribute("aria-expanded", "false")
+        : this.setAttribute("aria-expanded", "true");
+    this.getAttribute("aria-label") == "collapse menu"
+        ? this.setAttribute("aria-label", "expand menu")
+        : this.setAttribute("aria-label", "collapse menu");
+    });
+
+    /*TOGGLE MOBILE MENU*/
+    toggleMobileMenu.addEventListener("click", function () {
+    body.classList.toggle("mob-menu-opened");
+    this.getAttribute("aria-expanded") == "true"
+        ? this.setAttribute("aria-expanded", "false")
+        : this.setAttribute("aria-expanded", "true");
+    this.getAttribute("aria-label") == "open menu"
+        ? this.setAttribute("aria-label", "close menu")
+        : this.setAttribute("aria-label", "open menu");
+    });
+
+    /*SHOW TOOLTIP ON MENU LINK HOVER*/
+    for (const link of menuLinks) {
+    link.addEventListener("mouseenter", function () {
+        if (
+        body.classList.contains(collapsedClass) &&
+        window.matchMedia("(min-width: 768px)").matches
+        ) {
+        const tooltip = this.querySelector("span").textContent;
+        this.setAttribute("title", tooltip);
+        } else {
+        this.removeAttribute("title");
+        }
+    });
+    }
+  
+</script>
+
+<section class="page-content">
+	<section class="search-and-user">
+		<div class="admin-profile" style="text-align: left;">
+		<span class="greeting">This is your data visualization Dashboard</span>
+		</div>
+	</section>
+	<section class="data-visualization">
+    <p id ="data-visualization">Currently there are {{data["totalNumberOfVisitors"]}} Visiors</p>
+    <p id ="data-visualization">Currently there are {{data["numberOfCurrentlyPositive"]}} Positive Visitors</p>
+    <p id ="data-visualization">Currently there are {{data["numberOfCurrentlyNegative"]}} Negative Visiors</p>
+
+    <p>This represents the following distribution:</p>
+
+    <img src="/plot" alt="my plot">
+
+	
+	</section>
+	<footer class="page-footer">
+		<span>Corona archive</span>
+	</footer>
+</section>
+
+<script>
+    function myfun()
+  {
+      if (document.getElementById("form").style.display === "none")
+          document.getElementById("form").style.display="block";
+      else
+          document.getElementById("form").style.display="none";
+  }
+  </script>  
+  <script>
+    document.getElementById("form").style.display="none";
+</script>
+
+
+	
+{% endblock %}
+

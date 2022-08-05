@@ -1,0 +1,301 @@
+.next{ 
+    display: block;
+}
+.next > body{ 
+    font-family:"Capsule Sans Text", sans-serif;
+} 
+.css-1ev1kfm{ 
+    box-sizing: border-box; 
+    display: flex; 
+    flex-direction: column; 
+    min-height: column;  
+    min-height: 100vh;
+    padding-top:64px; 
+} 
+.css-1ev1kfm >body{ 
+    font-family: "Capsule Sans Text", sans-serif;
+} 
+.css-1btf6jw{ 
+    background-color: rgb(0,0,0); 
+    border-bottom-color: rgb(0,0,0); 
+    border-bottom-style: soild; 
+    border-bottom-width: 1px; 
+    transform: translate3d(0,0,0); 
+    overflow: hidden; 
+    position: relative;
+} 
+.css-1btf6jw > header{ 
+    display: block;
+} 
+.css-grid{ 
+    box-sizing: border-box; 
+    margin: 0 auto; 
+    width: 100%;
+} 
+.css-grid > div{ 
+    display: block;
+} 
+.css-grid > body{ 
+    font-family:"Capsule Sans Text", sans-serif;  
+} 
+.css-opp{ 
+    justify-content: flex-start; 
+    display: flex; 
+    -webkit-box-pack:start; 
+    align-items: center; 
+    -webkit-box-align: center; 
+} 
+.css-opp > body{ 
+    font-family:"Capsule Sans Text", sans-serif;
+}  
+@media (min-width: 768px) and (max-width:1023px){ 
+    .css-opp{ 
+        flex-direction: row; 
+        flex-wrap: wrap; 
+        margin-left: -7px; 
+        margin-right: -7px; 
+        width: calc(100% + 14px);
+    }
+} 
+@media (min-width: 768px) and (max-width: 1023px){ 
+    .css-oop1{ 
+        display: block; 
+        margin-left: 7px; 
+        margin-right: 7px; 
+        visibility: visible; 
+        width: calc(100%-14px);
+    }
+} 
+.css-a5{ 
+    padding:50px;
+}
+.css-a5 > div{ 
+    display: block;
+} 
+.css-18{
+    margin-bottom: 18px; 
+    white-space: pre-line;
+} 
+.css-18 > div{ 
+    display: block;
+}  
+.css-h{ 
+   margin : 0; 
+   color: rgb(255,255,255); 
+} 
+.css-h > h1{ 
+    display: block;  
+    margin-block-start:0.67em; 
+    margin-block-end: 0.67em; 
+    margin-inline-start:0px; 
+    margin-inline-end:0px;
+} 
+@media (min-width: 768px){
+    .css-h{ 
+        font-family: sans-serif; 
+        font-size: 52px; 
+        font-style: normal; 
+        font-weight: 500; 
+        letter-spacing: -1.75px;
+        line-height: 60px;  
+        text-decoration: unset;
+    }
+} 
+.css-178{ 
+    margin-top: 24px;
+} 
+.css-178 > div{ 
+    display: block;
+} 
+.css-jk{ 
+    margin:0; 
+    color: rgb(255,255,255);
+} 
+@media (min-width: 768px){ 
+    .css-jk{ 
+        font-family: sans-serif; 
+        font-size: 24px; 
+        font-style: normal; 
+        font-weight: 500;  
+        letter-spacing: -0.24px; 
+        line-height: 36px; 
+        text-decoration: unset; 
+    }
+} 
+@media(min-width:768px) and (max-width: 1023px){ 
+    .css-14{ 
+        display: block; 
+        margin-left:7px; 
+        margin-right: 7px; 
+        visibility: visible; 
+        width: calc(100.000%-14px);
+    }
+} 
+@media (min-width: 768px) and (max-width: 1023px){ 
+    .css-1fc{ 
+        margin-top: 60px; 
+        margin-bottom: 72px;
+    } 
+} 
+.css-1fc{ 
+    align-content: center; 
+    display: flex; 
+    height: 100%; 
+    -webkit-box-pack: center; 
+    justify-content: center;
+} 
+.css-ildi{
+    -webkit-box-align: center; 
+    align-items: center; 
+    display: flex; 
+    height: 100%;  
+    -webkit-box-pack: center; 
+    justify-content: center; 
+    width: 100%; 
+    pointer-events: none; 
+    position: absolute;
+} 
+.css-6q{ 
+    max-width:80%; 
+    height: 100%; 
+    object-fit: contain; 
+    user-select: none; 
+    margin-right: auto; 
+    margin-left: auto; 
+    display: block; 
+    margin-top: 50px; 
+    margin-bottom: -10px;
+}  
+.css-1s992mt{ 
+    max-height: calc(100% - 0px - env(safe-area-inset-bottom));
+    position: fixed;
+    top: 0;
+    width: 100%;
+} 
+.css-1s992mt > div{ 
+    display: block;
+} 
+.css-1s992mt > body{ 
+    font-family: "Capsule Sans Text", sans-serif; 
+} 
+.css-exp{ 
+    background-color: rgb(0,0,0); 
+    height: 64px; 
+    position: relative;
+} 
+.css-exp > nav{ 
+        display: block;
+} 
+.css-exp > body{ 
+    font-family: "Capsule Sans Text", sans-serif;
+} 
+.css-s3{ 
+    -webkit-box-align: center; 
+    align-items: center; 
+    box-shadow: 0px 1px 4px 0px; 
+    display: flex; 
+    height: 64px;
+} 
+@media (min-width: 768px){ 
+    .css-s3{ 
+        padding: 0 24px;
+    }
+} 
+.logo{ 
+    color: inherit; 
+    text-decoration:none;  
+    display: flex;
+} 
+.logo > a{ 
+    cursor: pointer;
+} 
+.logo>body{ 
+    font-family:"Capsule Sans Text", sans-serif;
+} 
+.logo>h1{ 
+    color: white;
+} 
+@media(min-width: 786px) and (max-width:1023px){ 
+    .css-1m8{ 
+        display: none; 
+        visibility: hidden;
+    }
+} 
+.css-1m8 > body{ 
+    font-family: "Capsule Sans Text", sans-serif;
+}
+.css-x84{ 
+    display: flex; 
+    flex-direction:column; 
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0;
+}  
+.list{ 
+    display: inline-block; 
+    margin-left: 20px; 
+    margin-top: 0px; 
+    padding: 0; 
+    white-space: nowrap;
+} 
+.list>a{ 
+    color:white; 
+    cursor: pointer; 
+    text-decoration: none;
+}  
+.list >li{ 
+    display: inline;
+}
+.css-14{ 
+    background-color: rgb(0,0,0); 
+    box-sizing: border-box; 
+    padding: 12px 18px; 
+    width:100%
+} 
+.css-14 > div{ 
+    display: block;
+}  
+@media (min-width:768px){ 
+    .css-14{
+        font-family: sans-serif;  
+        font-size: 18px; 
+        font-style: normal; 
+        font-weight: normal; 
+        letter-spacing: -0.25px; 
+        line-height: 28px; 
+        text-decoration: unset; 
+
+    }
+} 
+.css-own > a{ 
+    color: white;
+} 
+.css-own{ 
+    margin-top: 10px;
+}
+.css-x84 > ul{ 
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0;
+} 
+.css-2000 > ul{ 
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+    overflow: hidden; 
+}  
+.css-2000 >li{ 
+    float: left; 
+    margin-right: 15px;
+}  
+.css-2000 > a{ 
+    display: block; 
+    padding: 8px; 
+} 
+.anch{ 
+    text-decoration: none; 
+} 
+.anch > h2{ 
+    color: rgb(255,255,255)
+}
+

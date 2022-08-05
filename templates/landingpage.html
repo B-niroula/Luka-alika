@@ -1,0 +1,60 @@
+<!DOCTYPE html> 
+<html>
+    <head> 
+        <link rel="stylesheet" href="{{url_for('static', filename='landingpage.css')}}">
+    </head> 
+    <body style="background-color: rgb(255,255,255)">   
+       <div class="next"> 
+           <div class="css-1ev1kfm">
+               <div class="css-1sh75vq">
+                   <header class="css-1btf6jw">
+                        <div class="css-grid">
+                            <div class="css-opp">
+                               <div class="css-opp1"> 
+                                    <div>
+                                        <div class="css-a5">
+                                            <div class="css-18">
+                                                <h1 class="css-h">Corona Archive</h1> 
+                                            </div> 
+                                            <div class="css-178">
+                                                <span class="css-jk">
+                                                    "Welcome to the, corona control web application made
+                                                    for agency,visitors, hospitals and place owners"
+                                                </span>
+                                            </div> 
+                                            <div class="css-14">
+                                                <div class="css-1fc"> 
+                                                    <div class="css-idli">
+                                                        <img class="css-6q" src="{{url_for('static', filename='images/pic.gif')}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                               </div> 
+                            </div>
+                        </div>
+                   </header>
+               </div>
+           </div> 
+           <div class="css-1s992mt"> 
+                <nav role="navigation" class="css-exp">
+                    <div class="css-s3">
+                        <a class="logo" href="/">
+                            <h1>QRLogo</h1>
+                        </a>  
+                        <ul class="css-2000">
+                            <li><a href="{{url_for('register')}}" class="anch"><h2>Visitors</h2></a></li> 
+                            <li><a href="{{url_for('LoginAgent')}}" class="anch"><h2>Agency</h2></a></li> 
+                            <li><a href="{{url_for('LoginHospital')}}" class="anch"><h2>Hospitals</h2></a></li> 
+                            <li><a href="/pregister" class="anch"><h2>Register Your place</h2></a></li> 
+                            <li><a href="/imprint" class="anch"><h2>imprint</h2></a></li>
+                        </ul>
+                    </div> 
+                    
+                </nav>
+
+           </div>
+       </div>
+    </body>
+</html>

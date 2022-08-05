@@ -1,0 +1,56 @@
+<html>
+    <head>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+<script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <video id="preview" width="100%"></video>
+                </div>
+                <div class="col-md-6">
+                    <label>SCAN QR CODE</label>
+                    <input type="text" name="text" id="text" readonyy="" placeholder="scan qrcode" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var xhttp = new XMLHttpRequest();
+            
+            
+            let scanner = new Instascan.Scanner({ video: document.getElementById('preview')});
+            Instascan.Camera.getCameras().then(function(cameras){
+                if(cameras.length > 0 ){
+                    scanner.start(cameras[0]);
+                } else{
+                    alert('No cameras found');
+                }
+
+            }).catch(function(e) {
+                console.error(e);
+            });
+
+            scanner.addListener('scan',function(c){
+                if (new RegExp('/visit/[1-9]*$').test(c)) {
+                    id = c.match(/.*\/(.*)$/)[1];
+                    resp = xhttp.open("GET", "/getPlaceInfo/"+id, true);
+                    xhttp.onload = function() {
+                        const obj = JSON.parse(this.responseText);
+                        console.log(obj);
+                        if(obj !== null) {
+                            document.getElementById("text").value = obj[1];
+                        } else {
+                            document.getElementById("text").value = 'Invalid QR code';
+                        }
+                    }
+                    xhttp.send();
+                }    
+            });
+
+        </script>
+    </body>
+</html>

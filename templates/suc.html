@@ -1,0 +1,11 @@
+<html>
+    <head>
+    </head> 
+    <body>  
+        <!-- <a href="{{url_for('static', filename='images/see.jpeg')}}" download>
+        <img src="{{url_for('static', filename='images/see.jpeg')}}" alt="QR" width="500" height="600"> 
+        </a>  -->
+        <img id="picture" src="data:image/jpeg;base64,{{ qr_code }}">
+        <h1>Click on qr code to download</h1>
+    </body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hospital Portal</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Hospital portal</h2>
+  <p>Search by ID or name:</p>   
+  <form action="/Hospital" method="GET">
+  <input class="form-control" id="myInput" type="text" name="search" placeholder="Search..">
+  <br> 
+  <button type="submit" style="margin-left: 500px;">Submit</button> 
+  </form>
+  <table class="table table-bordered table-striped" style="margin-top:15px" id="val">
+    <thead>
+      <tr>
+        <th>Citizen_id</th>
+        <th>Name</th>
+        <th>Email</th> 
+        <th>Phone-number</th> 
+        <th>address</th> 
+        <th>Infected</th> 
+      </tr>
+    </thead>
+    <tbody id="myTable">
+      {% for row in data %}
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <td>{{row[3]}}</td> 
+                <td>{{row[4]}}</td> 
+                <td>{{row[5]}}</td> 
+                <td class="in-data">{{row[6]}}</td> 
+                <td><button onclick="myfun()">Edit</button></td>
+            </tr>
+        {% endfor %}    
+    </tbody>
+  </table>
+  <form  action="/append" style="display: none;" id="form" method="POST">
+    <div class="form-group">
+      <label for="exampleInputEmail1">User ID</label>
+      <input type="text" class="form-control" name="id" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter userid" value="{%if data%}{{data[0][0]}}{%endif%}" readonly>
+      <small id="emailHelp" class="form-text text-muted">Enter valid id.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Change Infected</label>
+      <select name="Infected" id="selectInfected">
+        <option value="0">Negative</option>
+        <option value="1">Positive</option>
+      </select>
+    </div>
+    <button type="submit" onclick="newfun()" class="btn btn-primary">Submit</button>
+  </form>
+
+</div> 
+
+
+<script>
+  function myfun()
+{
+    if (document.getElementById("form").style.display === "none")
+        document.getElementById("form").style.display="block";
+    else
+        document.getElementById("form").style.display="none";
+}
+</script>  
+<script>
+  document.getElementById("form").style.display="none";
+</script>
+
+
+
+</body>
+</html>
+
