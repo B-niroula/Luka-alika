@@ -28,25 +28,25 @@
 
 Create virtual environment
 
-$ python3 -m venv se-env
+            $ python3 -m venv se-env
 
 Start virtual environment
 
-$ source se-env/bin/activate
+            $ source se-env/bin/activate
 
 Please make sure pip is updated. If not, use 
 
-$ pip3 install --upgrade pip 
+            $ pip3 install --upgrade pip 
 
 Install all the dependencies
 
-$ pip3 install -r requirements.txt
+            $ pip3 install -r requirements.txt
 
 Create database
 
-$ python3 db.py
+            $ python3 db.py
 
 
 Run python server
 
-$ python3 app.py
+            $ python3 app.py
